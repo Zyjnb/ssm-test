@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.TreeMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Tree" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="iconCls" property="iconcls" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="checked" property="checked" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, text, url, iconCls, pid, checked
+  </sql>
+  <select id="queryTree" resultType="com.jk.model.RoleTree" parameterType="java.lang.String" >
+  select
+ roleid,treeid
+  from role_tree
+  where roleid = #{roleid}
+</select>
+  <select id="QuertTreeList" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from t_tree
+  </select>
+  <delete id="deleteTree" parameterType="java.lang.String" >
+    delete from role_tree
+    where roleid = #{roleid}
+  </delete>
+  <insert id="addTree" parameterType="com.jk.model.RoleTree" >
+   insert into role_tree (roleId, treeId
+      )
+    values (#{roleid}, #{treeid}
+      )
+</insert>
+  <insert id="insertSelective" parameterType="com.jk.model.Tree" >
+    insert into t_tree
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="iconcls != null" >
+        iconCls,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="checked != null" >
+        checked,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null" >
+        #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="checked != null" >
+        #{checked,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Tree" >
+    update t_tree
+    <set >
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null" >
+        iconCls = #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.Tree" >
+    update t_tree
+    set text = #{text,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      iconCls = #{iconcls,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      checked = #{checked,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+
+
+/* 
+使用说明:
+
+1.HTML head 里加入
+<link rel="stylesheet" href="<%=request.getContextPath() %>/文件夹名字/moban.css"/>
+2.需要将table加class名  tb
+颜色可以自己设置
+3.表头  (第一行) 必须用th标签  不用td
+*/
+
+.tb{
+    width: 700px;
+    margin:5px;
+    border-radius:10px;
+       
+}
+.tb tr{
+    background: #F0F0E1;
+    
+}
+.tb tr td{
+    border: 1.5px solid #FFFFFF;
+    text-align: center;
+
+}
+.tb tr th{
+    border: 1.5px solid #FFFFFF;
+    background: #888888;
+    color: white;
+    border-top:none;
+    /* border-top-left-radius: 20%;
+     border-top-right-radius: 20%;*/
+}
+.tb tr th:nth-child(1){
+    border-top-left-radius:10px;
+    border-left: none;
+    border-top:none;
+}
+.tb tr th:last-child{
+    border-top-right-radius:10px;
+    border-right: none;
+}
+.tb tr:nth-child(1){
+
+    background:#99B3FF;
+
+}
+.tb tr:nth-child(2n+1){
+    background:#DDDDDD;
+}
+.tb tr:hover{
+    background:#DDDDDD;
+    opacity: 0.6;
+
+}
+.tb tr:nth-child(1):hover{
+    border: 1.5px solid #FFFFFF;
+    opacity: 1;
+}
+.tb tr:last-child td:nth-child(1){
+
+    border-bottom-left-radius:8px;
+    
+}
+.tb tr:last-child td:last-child{
+
+    border-bottom-right-radius:8px;
+}
+      
